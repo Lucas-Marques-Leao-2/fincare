@@ -26,16 +26,24 @@ class MainActivity : ComponentActivity() {
             FincareApp {
                 NavHost(
                     navController = navController,
-                    startDestination = "exploreScreen"
+                    startDestination = "transactionExploreScreen"
                 ) {
+                    composable("transactionExploreScreen") {
+                        TransactionExploreScreen(navController)
+                    }
+
+                    composable("transactionFormScreen") {
+                        TransactionFormScreen(navController)
+                    }
+
                     composable("exploreScreen") {
-//                        ExploreScreen(navController = navController)
-                        ContactExploreScreen(navController = navController)
+//                        ExploreScreen(navController)
+                        ContactExploreScreen(navController)
                     }
 
                     composable("detailScreen")  {
 //                        DetailScreen()
-                            ContactFormScreen()
+                            ContactFormScreen(navController)
                     }
                 }
             }

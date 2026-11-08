@@ -2,6 +2,7 @@ package com.example.fincare.sample
 
 import com.example.fincare.domain.Accommodation
 import com.example.fincare.domain.Contact
+import com.example.fincare.domain.Transaction
 
 val sampleDataAccommodation = Accommodation(
     total = 1840.0,
@@ -77,6 +78,16 @@ val sampleDataAccommodations: List<Accommodation> = listOf(
         host = "Bruno",
         dates = "26 dez – 2 jan"
     )
+)
+
+val sampleDataTransaction: Transaction = Transaction(
+    description = "Netflix",
+    category = "Apps",
+    amount = 10.0,
+    type = "Despesa",
+    date = "07/09",
+    bankCode = "260",
+    bankName = "NU PAGAMENTOS S.A."
 )
 
 val sampleDataContact: Contact = Contact(

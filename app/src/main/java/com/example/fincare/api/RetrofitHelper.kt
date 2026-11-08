@@ -12,4 +12,6 @@ class RetrofitHelper {
 
     val addressApi = client.create(AddressApi::class.java)
 
+    val bankApi = client.create(BankApi::class.java)
+
 }

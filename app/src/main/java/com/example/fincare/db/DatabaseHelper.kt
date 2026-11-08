@@ -5,14 +5,18 @@ import androidx.room.RoomDatabase
 import androidx.room.Room
 import com.example.fincare.domain.Accommodation
 import com.example.fincare.domain.Contact
+import com.example.fincare.domain.Transaction
 
 @Database(
-    version = 1, entities = [Accommodation::class, Contact::class]
+    version = 2,
+    entities = [Accommodation::class, Contact::class, Transaction::class]
 )
 abstract class DatabaseHelper : RoomDatabase() {
     abstract fun accommodationDao(): AccommodationDao
 
     abstract fun contactDao(): ContactDao
+
+    abstract fun transactionDao(): TransactionDao
 
     companion object {
         fun getInstance(context: Context): DatabaseHelper {
@@ -20,7 +24,9 @@ abstract class DatabaseHelper : RoomDatabase() {
                 context,
                 DatabaseHelper::class.java,
                 "airbnb.db"
-            ).build()
+            )
+                .fallbackToDestructiveMigration(dropAllTables = true)
+                .build()
         }
     }
 }

@@ -7,11 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.Button
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -25,17 +21,15 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.fincare.api.RetrofitHelper
+import androidx.navigation.NavController
 import com.example.fincare.db.DatabaseHelper
 import com.example.fincare.domain.Contact
 import kotlinx.coroutines.launch
 
 
 @Composable
-fun ContactFormScreen() {
+fun ContactFormScreen(navController: NavController) {
     val context = LocalContext.current
 
     var name by remember { mutableStateOf("") }
@@ -94,6 +88,8 @@ fun ContactFormScreen() {
                                             name = name
                                         )
                                     )
+
+                                navController.navigate("exploreScreen")
                             } catch (e: Exception) {
                                 Log.i("Erro", e.message.toString())
                                 Toast.makeText(
@@ -109,17 +105,5 @@ fun ContactFormScreen() {
                 }
             }
         }
-    }
-}
-
-
-@Preview(
-    showSystemUi = true,
-    device = Devices.PIXEL_3A,
-)
-@Composable
-private fun PreviewRegisterScreen() {
-    Surface(Modifier.padding(top = 64.dp)) {
-        ContactFormScreen()
     }
 }
