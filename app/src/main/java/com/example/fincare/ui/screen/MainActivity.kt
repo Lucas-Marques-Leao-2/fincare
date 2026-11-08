@@ -39,8 +39,16 @@ class MainActivity : ComponentActivity() {
             FincareApp(navController) {
                 NavHost(
                     navController = navController,
-                    startDestination = "homeScreen"
+                    startDestination = "signInScreen"
                 ) {
+                    composable("signInScreen") {
+                        SignInScreen(navController)
+                    }
+
+                    composable("signUpScreen") {
+                        SignUpScreen(navController)
+                    }
+
                     composable("homeScreen") {
                         HomeScreen(navController)
                     }

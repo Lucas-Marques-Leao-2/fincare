@@ -16,4 +16,6 @@ class RetrofitHelper {
 
     val rateApi = client.create(RateApi::class.java)
 
+    val dddApi = client.create(DddApi::class.java)
+
 }
