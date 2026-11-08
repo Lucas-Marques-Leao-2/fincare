@@ -121,3 +121,13 @@ val sampleDataContacts: List<Contact> = listOf(
         number = "(82) 99340-9788"
     ),
 )
+
+val sampleDataInvestments: List<com.example.fincare.domain.Investment> = listOf(
+    com.example.fincare.domain.Investment(name = "CDB Nubank", type = "Renda fixa", quantity = 2.0, averagePrice = 300.0, currentPrice = 312.40, month = 1, year = 2026),
+    com.example.fincare.domain.Investment(name = "LCI Inter", type = "Renda fixa", quantity = 1.0, averagePrice = 600.0, currentPrice = 631.20, month = 3, year = 2026),
+    com.example.fincare.domain.Investment(name = "PETR4", type = "Renda variável", quantity = 10.0, averagePrice = 36.50, currentPrice = 38.10, month = 2, year = 2026),
+    com.example.fincare.domain.Investment(name = "ITUB4", type = "Renda variável", quantity = 8.0, averagePrice = 32.0, currentPrice = 30.75, month = 4, year = 2026),
+    com.example.fincare.domain.Investment(name = "Tesouro Selic 2029", type = "Tesouro direto", quantity = 0.03, averagePrice = 15800.0, currentPrice = 16450.0, month = 5, year = 2026),
+    com.example.fincare.domain.Investment(name = "Poupança Caixa", type = "Poupança", quantity = 1.0, averagePrice = 250.0, currentPrice = 258.0, month = 6, year = 2026),
+    com.example.fincare.domain.Investment(name = "Bitcoin", type = "Cripto", quantity = 0.001, averagePrice = 380000.0, currentPrice = 410000.0, month = 6, year = 2026),
+)
