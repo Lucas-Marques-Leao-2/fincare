@@ -3,6 +3,7 @@ package com.example.fincare.ui.screen
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -32,6 +33,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.fincare.api.RetrofitHelper
@@ -117,6 +119,7 @@ fun TransactionFormScreen(navController: NavController) {
                     singleLine = true,
                     onValueChange = { amount = it },
                     label = { Text("Valor") },
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                     shape = RoundedCornerShape(12.dp),
                 )
 
@@ -207,19 +210,23 @@ fun TransactionFormScreen(navController: NavController) {
                     shape = RoundedCornerShape(12.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = FincareBlue),
                     onClick = {
-                        val parsedAmount = amount.replace(",", ".").toDoubleOrNull()
-                        if (
-                            description.isBlank() ||
-                            category.isBlank() ||
-                            date.isBlank() ||
-                            bankName.isBlank() ||
-                            parsedAmount == null
-                        ) {
-                            Toast.makeText(
-                                context,
-                                "Preencha os campos e busque o banco",
-                                Toast.LENGTH_SHORT,
-                            ).show()
+                        var cleanAmount = amount.replace("R$", "").trim()
+                        if (cleanAmount.contains(",")) {
+                            cleanAmount = cleanAmount.replace(".", "").replace(",", ".")
+                        }
+                        val parsedAmount = cleanAmount.toDoubleOrNull()
+
+                        var error = ""
+                        if (parsedAmount == null || parsedAmount <= 0) {
+                            error = "Valor inválido: use só números, ex.: 120,50"
+                        } else if (description.isBlank() || category.isBlank() || date.isBlank()) {
+                            error = "Preencha descrição, categoria e data"
+                        } else if (bankName.isBlank()) {
+                            error = "Busque o banco pela lupa"
+                        }
+
+                        if (error.isNotEmpty() || parsedAmount == null) {
+                            Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
                             return@Button
                         }
 
