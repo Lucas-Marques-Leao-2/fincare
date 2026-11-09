@@ -131,3 +131,10 @@ val sampleDataInvestments: List<com.example.fincare.domain.Investment> = listOf(
     com.example.fincare.domain.Investment(name = "Poupança Caixa", type = "Poupança", quantity = 1.0, averagePrice = 250.0, currentPrice = 258.0, month = 6, year = 2026),
     com.example.fincare.domain.Investment(name = "Bitcoin", type = "Cripto", quantity = 0.001, averagePrice = 380000.0, currentPrice = 410000.0, month = 6, year = 2026),
 )
+
+val sampleDataAccounts: List<com.example.fincare.domain.Account> = listOf(
+    com.example.fincare.domain.Account(name = "Nubank", bankName = "NU PAGAMENTOS S.A.", kind = "Open finance", balance = 1433.0, main = true),
+    com.example.fincare.domain.Account(name = "Banco Inter", bankName = "BANCO INTER S.A.", kind = "Manual", balance = 600.0),
+    com.example.fincare.domain.Account(name = "Carteira", bankName = "Dinheiro em espécie", kind = "Manual", balance = 600.0),
+    com.example.fincare.domain.Account(name = "XP Investimentos", bankName = "XP INVESTIMENTOS CCTVM S.A.", kind = "Manual", balance = 100.0),
+)

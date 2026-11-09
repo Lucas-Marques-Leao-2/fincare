@@ -1,5 +1,6 @@
 package com.example.fincare.ui.components
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -110,6 +112,39 @@ fun PercentRing(percent: Double) {
             text = "${percent.toInt()}%",
             fontSize = 11.sp,
             fontWeight = FontWeight.SemiBold,
+            color = Color(0xFF3A3F4B),
+        )
+    }
+}
+
+@Composable
+fun DonutChart(values: List<Double>, centerText: String) {
+    val total = values.sum()
+
+    Box(modifier = Modifier.size(170.dp), contentAlignment = Alignment.Center) {
+        Canvas(modifier = Modifier.size(150.dp)) {
+            if (total <= 0) {
+                drawArc(Color(0xFFE6E8EC), 0f, 360f, false, style = Stroke(width = 18.dp.toPx()))
+                return@Canvas
+            }
+
+            var startAngle = -90f
+            for (i in values.indices) {
+                val sweep = (values[i] / total * 360).toFloat()
+                drawArc(
+                    color = chartColors[i % chartColors.size],
+                    startAngle = startAngle,
+                    sweepAngle = sweep,
+                    useCenter = false,
+                    style = Stroke(width = 18.dp.toPx()),
+                )
+                startAngle += sweep
+            }
+        }
+        Text(
+            text = centerText,
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Bold,
             color = Color(0xFF3A3F4B),
         )
     }

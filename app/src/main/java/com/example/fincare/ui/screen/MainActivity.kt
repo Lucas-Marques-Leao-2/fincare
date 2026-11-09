@@ -58,7 +58,11 @@ class MainActivity : ComponentActivity() {
                     }
 
                     composable("accountsScreen") {
-                        ComingSoonScreen("Contas")
+                        AccountsScreen(navController)
+                    }
+
+                    composable("accountFormScreen") {
+                        AccountFormScreen(navController)
                     }
 
                     composable("profileScreen") {

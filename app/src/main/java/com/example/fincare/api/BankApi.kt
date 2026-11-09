@@ -6,6 +6,9 @@ import retrofit2.http.Path
 
 interface BankApi {
 
+    @GET("banks/v1")
+    suspend fun findAll(): List<Bank>
+
     @GET("banks/v1/{code}")
     suspend fun findByCode(@Path("code") code: String): Bank
 }

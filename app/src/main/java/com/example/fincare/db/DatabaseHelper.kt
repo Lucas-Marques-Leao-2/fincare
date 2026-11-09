@@ -4,14 +4,15 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.Room
 import com.example.fincare.domain.Accommodation
+import com.example.fincare.domain.Account
 import com.example.fincare.domain.Contact
 import com.example.fincare.domain.Investment
 import com.example.fincare.domain.Transaction
 import com.example.fincare.domain.User
 
 @Database(
-    version = 5,
-    entities = [Accommodation::class, Contact::class, Transaction::class, Investment::class, User::class]
+    version = 6,
+    entities = [Accommodation::class, Contact::class, Transaction::class, Investment::class, User::class, Account::class]
 )
 abstract class DatabaseHelper : RoomDatabase() {
     abstract fun accommodationDao(): AccommodationDao
@@ -23,6 +24,8 @@ abstract class DatabaseHelper : RoomDatabase() {
     abstract fun investmentDao(): InvestmentDao
 
     abstract fun userDao(): UserDao
+
+    abstract fun accountDao(): AccountDao
 
     companion object {
         fun getInstance(context: Context): DatabaseHelper {
