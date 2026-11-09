@@ -64,18 +64,18 @@ fun SignInScreen(navController: NavController) {
         FincareLogo()
 
         Text(
-            text = "Sign In",
+            text = "Entrar",
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
         )
 
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text("New here? ", color = Color(0xFF8A8A8A))
+            Text("Ainda não tem conta? ", color = Color(0xFF8A8A8A))
             TextButton(
                 onClick = { navController.navigate("signUpScreen") },
                 contentPadding = PaddingValues(0.dp),
             ) {
-                Text("Create an Account", color = FincareBlue)
+                Text("Criar conta", color = FincareBlue)
             }
         }
 
@@ -86,7 +86,7 @@ fun SignInScreen(navController: NavController) {
                 value = email,
                 onValueChange = { email = it },
                 singleLine = true,
-                placeholder = { Text("Enter email") },
+                placeholder = { Text("Digite seu email") },
                 shape = RoundedCornerShape(8.dp),
                 colors = fieldColors(),
             )
@@ -98,18 +98,18 @@ fun SignInScreen(navController: NavController) {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Text("Password", fontWeight = FontWeight.Medium)
+                Text("Senha", fontWeight = FontWeight.Medium)
                 TextButton(
                     onClick = {
                         Toast.makeText(
                             context,
-                            "Password recovery is not available",
+                            "Recuperação de senha indisponível",
                             Toast.LENGTH_SHORT,
                         ).show()
                     },
                     contentPadding = PaddingValues(0.dp),
                 ) {
-                    Text("Forgot Password?", color = FincareBlue, fontSize = 13.sp)
+                    Text("Esqueceu a senha?", color = FincareBlue, fontSize = 13.sp)
                 }
             }
             OutlinedTextField(
@@ -131,7 +131,7 @@ fun SignInScreen(navController: NavController) {
             colors = ButtonDefaults.buttonColors(containerColor = FincareBlue),
             onClick = {
                 if (email.isBlank() || password.isBlank()) {
-                    Toast.makeText(context, "Fill in email and password", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Preencha email e senha", Toast.LENGTH_SHORT).show()
                     return@Button
                 }
 
@@ -145,7 +145,7 @@ fun SignInScreen(navController: NavController) {
                         if (user == null || user.password != password) {
                             Toast.makeText(
                                 context,
-                                "Invalid email or password",
+                                "Email ou senha inválidos",
                                 Toast.LENGTH_SHORT,
                             ).show()
                             return@launch
@@ -155,16 +155,16 @@ fun SignInScreen(navController: NavController) {
                             popUpTo("signInScreen") { inclusive = true }
                         }
                     } catch (e: Exception) {
-                        Toast.makeText(context, "Could not sign in", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Não foi possível entrar", Toast.LENGTH_SHORT).show()
                     }
                 }
             },
         ) {
-            Text("Sign In")
+            Text("Entrar")
         }
 
         Text(
-            text = "Or sign in with:",
+            text = "Ou entre com:",
             color = Color(0xFF8A8A8A),
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.Start,
@@ -227,5 +227,5 @@ private fun fieldColors() = OutlinedTextFieldDefaults.colors(
 )
 
 private fun socialToast(context: android.content.Context) {
-    Toast.makeText(context, "Use email to sign in", Toast.LENGTH_SHORT).show()
+    Toast.makeText(context, "Use o email para entrar", Toast.LENGTH_SHORT).show()
 }

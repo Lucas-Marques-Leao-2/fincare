@@ -65,26 +65,26 @@ fun SignUpScreen(navController: NavController) {
         FincareLogo()
 
         Text(
-            text = "Sign Up",
+            text = "Criar conta",
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
         )
 
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text("Have an account? ", color = Color(0xFF8A8A8A))
+            Text("Já tem uma conta? ", color = Color(0xFF8A8A8A))
             TextButton(
                 onClick = { navController.popBackStack() },
                 contentPadding = PaddingValues(0.dp),
             ) {
-                Text("Do login", color = FincareBlue)
+                Text("Entrar", color = FincareBlue)
             }
         }
 
-        LabeledField(label = "Name", value = name, onValueChange = { name = it }, placeholder = "Enter full name")
-        LabeledField(label = "Email", value = email, onValueChange = { email = it }, placeholder = "Enter email")
+        LabeledField(label = "Nome", value = name, onValueChange = { name = it }, placeholder = "Digite seu nome completo")
+        LabeledField(label = "Email", value = email, onValueChange = { email = it }, placeholder = "Digite seu email")
 
         Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-            Text("Phone", fontWeight = FontWeight.Medium)
+            Text("Telefone", fontWeight = FontWeight.Medium)
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = phone,
@@ -101,7 +101,7 @@ fun SignUpScreen(navController: NavController) {
         }
 
         Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-            Text("Password", fontWeight = FontWeight.Medium)
+            Text("Senha", fontWeight = FontWeight.Medium)
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = password,
@@ -122,7 +122,7 @@ fun SignUpScreen(navController: NavController) {
         }
 
         Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-            Text("Confirm password", fontWeight = FontWeight.Medium)
+            Text("Confirmar senha", fontWeight = FontWeight.Medium)
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),
                 value = confirmPassword,
@@ -142,16 +142,16 @@ fun SignUpScreen(navController: NavController) {
             colors = ButtonDefaults.buttonColors(containerColor = FincareBlue),
             onClick = {
                 if (name.isBlank() || email.isBlank() || phone.isBlank() || password.isBlank()) {
-                    Toast.makeText(context, "Fill in all fields", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Preencha todos os campos", Toast.LENGTH_SHORT).show()
                     return@Button
                 }
                 if (password != confirmPassword) {
-                    Toast.makeText(context, "Passwords do not match", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "As senhas não coincidem", Toast.LENGTH_SHORT).show()
                     return@Button
                 }
                 val ddd = dddFromPhone(phone)
                 if (ddd.length < 2) {
-                    Toast.makeText(context, "Enter the area code", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Informe o DDD no telefone", Toast.LENGTH_SHORT).show()
                     return@Button
                 }
 
@@ -160,13 +160,13 @@ fun SignUpScreen(navController: NavController) {
                         val info = RetrofitHelper().dddApi.findByDdd(ddd)
                         val state = info.state
                         if (state.isNullOrBlank()) {
-                            Toast.makeText(context, "Area code not found", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "DDD não encontrado", Toast.LENGTH_SHORT).show()
                             return@launch
                         }
 
                         val dao = DatabaseHelper.getInstance(context).userDao()
                         if (dao.findByEmail(email.trim()) != null) {
-                            Toast.makeText(context, "Email already registered", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "Email já cadastrado", Toast.LENGTH_SHORT).show()
                             return@launch
                         }
 
@@ -180,16 +180,16 @@ fun SignUpScreen(navController: NavController) {
                             )
                         )
 
-                        Toast.makeText(context, "Account created", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Conta criada", Toast.LENGTH_SHORT).show()
                         navController.popBackStack()
                     } catch (e: Exception) {
                         Log.i("Erro", e.message.toString())
-                        Toast.makeText(context, "Area code not found", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "DDD não encontrado", Toast.LENGTH_SHORT).show()
                     }
                 }
             },
         ) {
-            Text("Sign up")
+            Text("Criar conta")
         }
     }
 }
