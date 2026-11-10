@@ -151,6 +151,7 @@ fun SignInScreen(navController: NavController) {
                             return@launch
                         }
 
+                        loggedEmail = user.email
                         navController.navigate("homeScreen") {
                             popUpTo("signInScreen") { inclusive = true }
                         }

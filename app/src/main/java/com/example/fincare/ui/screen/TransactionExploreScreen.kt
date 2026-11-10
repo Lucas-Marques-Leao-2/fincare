@@ -18,6 +18,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -109,6 +110,16 @@ fun TransactionExploreScreen(navController: NavController) {
                 },
                 shape = RoundedCornerShape(12.dp),
             )
+
+            OutlinedButton(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+                shape = RoundedCornerShape(12.dp),
+                onClick = { navController.navigate("reportScreen") },
+            ) {
+                Text("Ver relatório do mês")
+            }
 
             Text(
                 text = "Últimas transações",

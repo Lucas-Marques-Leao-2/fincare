@@ -64,12 +64,16 @@ class MainActivity : ComponentActivity() {
                         AccountFormScreen(navController)
                     }
 
+                    composable("reportScreen") {
+                        ReportScreen(navController)
+                    }
+
                     composable("simulatorScreen") {
                         SimulatorScreen(navController)
                     }
 
                     composable("profileScreen") {
-                        ComingSoonScreen("Perfil")
+                        ProfileScreen(navController)
                     }
 
                     composable("transactionExploreScreen") {
