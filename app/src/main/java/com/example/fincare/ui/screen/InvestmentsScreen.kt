@@ -21,6 +21,8 @@ import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.outlined.Search
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -156,6 +158,19 @@ fun InvestmentsScreen(navController: NavController) {
                         Text("Valor investido por mês", color = TextMuted, fontSize = 13.sp)
                         BarChart(labels = chartLabels, values = chartValues)
                     }
+                }
+            }
+
+            item {
+                Button(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    shape = RoundedCornerShape(12.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = FincareBlue),
+                    onClick = { navController.navigate("simulatorScreen") },
+                ) {
+                    Text("Simular investimento")
                 }
             }
 

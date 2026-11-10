@@ -64,6 +64,10 @@ class MainActivity : ComponentActivity() {
                         AccountFormScreen(navController)
                     }
 
+                    composable("simulatorScreen") {
+                        SimulatorScreen(navController)
+                    }
+
                     composable("profileScreen") {
                         ComingSoonScreen("Perfil")
                     }
